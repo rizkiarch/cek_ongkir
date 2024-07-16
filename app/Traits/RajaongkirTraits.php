@@ -6,10 +6,11 @@ trait RajaongkirTraits
 {
     public function getOngkir($origin, $destination, $weight, $courier)
     {
+        $api_key = env('RAJAONGKIR_API_KEY');
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+            CURLOPT_URL => env('URL_RAJAONGKIR'),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -24,7 +25,7 @@ trait RajaongkirTraits
             ]),
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
-                "key: ad1e03ef563d51c96e35353fa2217439" // ganti dengan API key Anda
+                "key: $api_key",
             ),
         ));
 
